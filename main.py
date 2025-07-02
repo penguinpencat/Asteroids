@@ -1,6 +1,6 @@
 import pygame
 from constants import *
-
+from player import Player
 
 def main():
     # Initialize Pygame
@@ -10,14 +10,22 @@ def main():
     # Create a clock object to control the frame rate
     clock = pygame.time.Clock()
     dt = 0
+    # Player starting position
+    x = SCREEN_WIDTH / 2
+    y = SCREEN_HEIGHT / 2
+    player = Player(x, y)
     #Game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return
+        # Fill the screen with (insert_fav_colour)
+        screen.fill((20, 41, 67))
         # Fill the screen with black
-        screen.fill((0, 0, 0))
+        #screen.fill((0, 0, 0))
+        # Re-drawing the player
+        player.draw(screen)
         # Update the display
         pygame.display.flip()
         miliseconds = clock.tick(60)
