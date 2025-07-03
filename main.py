@@ -24,6 +24,8 @@ def main():
         screen.fill((20, 41, 67))
         # Fill the screen with black
         #screen.fill((0, 0, 0))
+        # Updating players position
+        player.update(dt)
         # Re-drawing the player
         player.draw(screen)
         # Update the display
