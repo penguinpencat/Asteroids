@@ -13,8 +13,14 @@ def main():
     # Player starting position
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
+    # Creating two groups
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    # Setting both groups and containers
+    Player.containers = (updatable, drawable)
+    # Creating the player
     player = Player(x, y)
-    #Game loop
+    # Game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -23,11 +29,12 @@ def main():
         # Fill the screen with (insert_fav_colour)
         screen.fill((20, 41, 67))
         # Fill the screen with black
-        #screen.fill((0, 0, 0))
+        # Screen.fill((0, 0, 0))
         # Updating players position
-        player.update(dt)
+        updatable.update(dt)
         # Re-drawing the player
-        player.draw(screen)
+        for drawing in drawable:
+            drawing.draw(screen)
         # Update the display
         pygame.display.flip()
         miliseconds = clock.tick(60)
