@@ -50,6 +50,10 @@ def main():
         updatable.update(dt)
         # Iterating over all objects in asteroids
         for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.is_colliding_with(shot) == True:
+                    asteroid.kill()
+                    shot.kill()
             if asteroid.is_colliding_with(player) == True:
                 print("Game over!")
                 sys.exit()
