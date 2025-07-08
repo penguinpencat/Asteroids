@@ -8,6 +8,9 @@ class Player(CircleShape):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.timer = 0
+        self.score = 0
+         # Lower this to make it harder
+        self.lives = 3
 
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt

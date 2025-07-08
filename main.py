@@ -5,6 +5,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
+from gameover import show_game_over
 
 def main():
     # Initialize Pygame
@@ -54,19 +55,30 @@ def main():
                 if asteroid.is_colliding_with(shot) == True:
                     asteroid.kill()
                     shot.kill()
+                    player.score += 1
             if asteroid.is_colliding_with(player) == True:
-                print("Game over!")
-                sys.exit()
+                if player.lives == 0:
+                    show_game_over(screen)
+                    pygame.quit()
+                    sys.exit()
+                else:
+                    player.lives -= 1
+                    player.set_position(x, y)
+
         # Re-drawing the player
         for drawing in drawable:
             drawing.draw(screen)
+        # Updating Score
+        font = pygame.font.SysFont(None, 36)
+        score_text = font.render(f"Asteroids Destroyed: {player.score}", True, TEXT_COLOUR)
+        screen.blit(score_text, (10, 10))
+        # Display Player Lives
+        lives_text = font.render(f"Lives Remaining: {player.lives}", True, TEXT_COLOUR)
+        screen.blit(lives_text, (10, 50))
         # Update the display
         pygame.display.flip()
         miliseconds = clock.tick(60)
         dt = miliseconds / 1000
-    print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
 
 if __name__ == "__main__":
     main()
