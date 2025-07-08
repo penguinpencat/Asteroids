@@ -17,7 +17,7 @@ def main():
     # Player starting position
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
-    # Creating two groups
+    # Creating two groups for updating and drawing
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     # Creating one new group for the asteroids
