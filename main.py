@@ -37,14 +37,19 @@ def main():
     player = Player(x, y)
     # Creating the asteroid
     asteroidfield = AsteroidField()
+    # Loading/Creating a nebula background
+    background = pygame.image.load("dark_nebula_background.jpg").convert()
+    background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
     # Game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return
+        # Drawing the background image
+        screen.blit(background, (0, 0))
         # Fill the screen with (insert_fav_colour)
-        screen.fill((20, 41, 67))
+        #screen.fill((20, 41, 67))
         # Fill the screen with black
         # Screen.fill((0, 0, 0))
         # Updating players position
